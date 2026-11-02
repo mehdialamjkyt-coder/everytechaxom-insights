@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Everytech Axom Insights</title>
+<meta name="robots" content="noindex, nofollow">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080d18;
+    color: #fff;
+    min-height: 100vh;
+}
+
+button, input, textarea, select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: #111b2c;
+    border: 1px solid #263750;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.logo {
+    color: #39a8ff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 13px;
+    margin: 9px 0 17px;
+    border-radius: 9px;
+    border: 1px solid #30435f;
+    background: #0b1423;
+    color: white;
+    outline: none;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #299cff;
+}
+
+label {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.primary-btn {
+    background: #1687ed;
+    border: none;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.primary-btn:hover {
+    background: #0870ce;
+}
+
+.full-btn {
+    width: 100%;
+}
+
+.dashboard {
+    display: none;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 245px;
+    background: #101a2b;
+    border-right: 1px solid #263750;
+    padding: 25px 17px;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    color: #39a8ff;
+    font-size: 21px;
+    margin-bottom: 35px;
+}
+
+.sidebar button {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 9px;
+    background: transparent;
+    color: #cbd5e1;
+    border: none;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+    background: #1b3452;
+    color: #45b0ff;
+}
+
+.main {
+    margin-left: 245px;
+    padding: 30px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+    font-size: 27px;
+}
+
+.logout-btn {
+    background: #57202b;
+    color: #ffb7c1;
+    border: 1px solid #873b4b;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.stat-card, .panel {
+    background: #111b2c;
+    border: 1px solid #263750;
+    border-radius: 13px;
+    padding: 22px;
+}
+
+.stat-card p {
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+.stat-card h2 {
+    color: #43aaff;
+    font-size: 29px;
+}
+
+.panel {
+    margin-bottom: 22px;
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+}
+
+.editor-section {
+    display: none;
+}
+
+.editor-section.active {
+    display: block;
+}
+
+.dashboard-section {
+    display: block;
+}
+
+.dashboard-section.hidden {
+    display: none;
+}
+
+.editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+#content {
+    min-height: 350px;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.secondary-btn {
+    background: #263750;
+    border: 1px solid #405673;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 9px;
+}
+
+.danger-btn {
+    background: #702b38;
+    color: white;
+    border: none;
+    padding: 9px 13px;
+    border-radius: 7px;
+}
+
+.article-list {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid #29384e;
+    text-align: left;
+}
+
+th {
+    color: #55b4ff;
+}
+
+.status {
+    color: #63df9b;
+}
+
+#message {
+    margin-top: 15px;
+    color: #62dca1;
+    font-size: 14px;
+}
+
+@media(max-width: 800px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid #263750;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 12px;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 18px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .editor-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN SCREEN -->
+
+<section class="login-screen" id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="logo">EVERYTECH AXOM</div>
+
+        <p class="subtitle">
+            Insights Admin Dashboard
+        </p>
+
+        <form id="loginForm">
+
+            <label>Admin Email</label>
+            <input
+                type="email"
+                id="adminEmail"
+                placeholder="Enter admin email"
+                required
+            >
+
+            <label>Admin Password</label>
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Enter password"
+                required
+            >
+
+            <button class="primary-btn full-btn" type="submit">
+                Login to Dashboard
+            </button>
+
+        </form>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+</section>
+
+
+<!-- ADMIN DASHBOARD -->
+
+<section class="dashboard" id="dashboard">
+
+    <aside class="sidebar">
+
+        <h2>EVERYTECH AXOM</h2>
+
+        <button class="active" data-section="overview">
+            Dashboard
+        </button>
+
+        <button data-section="editor">
+            + New Article
+        </button>
+
+        <button data-section="articles">
+            Manage Articles
+        </button>
+
+        <button id="viewWebsite">
+            View Website ↗
+        </button>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1 id="pageTitle">Dashboard Overview</h1>
+
+            <button class="logout-btn" id="logoutBtn">
+                Logout
+            </button>
+
+        </header>
+
+
+        <!-- OVERVIEW -->
+
+        <section class="dashboard-section" id="overview">
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <p>Total Articles</p>
+                    <h2 id="totalArticles">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Published</p>
+                    <h2 id="publishedArticles">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Drafts</p>
+                    <h2 id="draftArticles">0</h2>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <h2>Welcome to Everytech Axom Insights</h2>
+
+                <p style="color:#94a3b8;line-height:1.8">
+                    Manage your technology articles, publish new posts,
+                    edit existing content and manage your blog from
+                    one dashboard.
+                </p>
+
+                <br>
+
+                <button class="primary-btn" id="createArticleBtn">
+                    Create New Article +
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ARTICLE EDITOR -->
+
+        <section class="editor-section" id="editor">
+
+            <div class="panel">
+
+                <h2 id="editorTitle">Create New Article</h2>
+
+                <form id="articleForm">
+
+                    <input type="hidden" id="articleId">
+
+                    <label>Article Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Enter article title"
+                        required
+                    >
+
+                    <label>Article URL Slug</label>
+                    <input
+                        type="text"
+                        id="slug"
+                        placeholder="example-article-title"
+                        required
+                    >
+
+                    <div class="editor-grid">
+
+                        <div>
+                            <label>Category</label>
+                            <select id="category" required>
+                                <option value="">Select Category</option>
+                                <option>Technology</option>
+                                <option>Artificial Intelligence</option>
+                                <option>Gaming</option>
+                                <option>Software</option>
+                                <option>Mobile Apps</option>
+                                <option>Cyber Security</option>
+                                <option>Science</option>
+                                <option>News</option>
+                                <option>Education</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>Author</label>
+                            <input
+                                type="text"
+                                id="author"
+                                value="Mehdi Alam"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                    <label>Article Thumbnail URL</label>
+                    <input
+                        type="url"
+                        id="thumbnail"
+                        placeholder="https://example.com/image.jpg"
+                    >
+
+                    <label>Short Description</label>
+                    <textarea
+                        id="description"
+                        placeholder="Write a short article description..."
+                        required
+                    ></textarea>
+
+                    <label>Article Content (HTML supported)</label>
+                    <textarea
+                        id="content"
+                        placeholder="Write your complete article here..."
+                        required
+                    ></textarea>
+
+                    <div class="editor-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-btn"
+                            id="draftBtn"
+                        >
+                            Save Draft
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-btn"
+                        >
+                            Publish Article
+                        </button>
+
+                    </div>
+
+                    <p id="message" role="status"></p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- MANAGE ARTICLES -->
+
+        <section class="editor-section" id="articles">
+
+            <div class="panel">
+
+                <h2>Manage Articles</h2>
+
+                <div class="article-list">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="articleTable">
+
+                            <tr>
+                                <td colspan="4">
+                                    Loading articles...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</section>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
