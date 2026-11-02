@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Everytech Axom Insights | Technology Blog</title>
+
+  <meta name="description" content="Explore the latest technology news, AI, cybersecurity, gadgets, software and digital innovation with Everytech Axom Insights.">
+
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #172033;
+    }
+
+    header {
+      padding: 20px 7%;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      color: #155eef;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #344054;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 85px 7%;
+      background: #f5f8ff;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 58px);
+      max-width: 850px;
+      margin: auto;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      color: #667085;
+      margin: 20px auto;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .search {
+      max-width: 550px;
+      margin: 30px auto 0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .search input {
+      flex: 1;
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .search button {
+      background: #155eef;
+      color: white;
+      border: none;
+      padding: 0 22px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 55px 7%;
+    }
+
+    .section-title {
+      font-size: 27px;
+      margin-bottom: 25px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 45px;
+    }
+
+    .category {
+      border: 1px solid #e4e7ec;
+      padding: 11px 17px;
+      border-radius: 30px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .category:hover,
+    .category.active {
+      background: #155eef;
+      color: white;
+    }
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .article {
+      border: 1px solid #eaecf0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      transition: 0.25s;
+    }
+
+    .article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px #10182812;
+    }
+
+    .article img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #f2f4f7;
+    }
+
+    .article-content {
+      padding: 20px;
+    }
+
+    .article-content small {
+      color: #155eef;
+      font-weight: bold;
+    }
+
+    .article-content h3 {
+      margin: 12px 0;
+      line-height: 1.4;
+    }
+
+    .article-content p {
+      color: #667085;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: #101828;
+      color: white;
+      text-align: center;
+      padding: 35px 15px;
+      line-height: 2;
+    }
+
+    @media(max-width:600px) {
+      header {
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .hero {
+        padding: 65px 5%;
+      }
+
+      main {
+        padding: 40px 5%;
+      }
+
+      .search button {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">EVERYTECH INSIGHTS</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#articles">Articles</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Explore the Future of Technology.</h1>
+
+    <p>
+      Discover the latest technology news, artificial intelligence,
+      cybersecurity, gadgets, software and digital innovations.
+    </p>
+
+    <div class="search">
+      <input type="search" placeholder="Search technology articles...">
+      <button>Search</button>
+    </div>
+  </section>
+
+  <main>
+
+    <section id="categories">
+      <h2 class="section-title">Explore Categories</h2>
+
+      <div class="categories">
+        <button class="category active">All</button>
+        <button class="category">Artificial Intelligence</button>
+        <button class="category">Cyber Security</button>
+        <button class="category">Technology News</button>
+        <button class="category">Gadgets</button>
+        <button class="category">Software</button>
+        <button class="category">Gaming</button>
+        <button class="category">Web Development</button>
+      </div>
+    </section>
+
+    <section id="articles">
+      <h2 class="section-title">Latest Articles</h2>
+
+      <div class="articles">
+        <p>New articles will appear here soon.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <h3>EVERYTECH INSIGHTS</h3>
+    <p>Technology • Innovation • Digital World</p>
+    <p>© 2026 Everytech Axom. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
