@@ -391,14 +391,17 @@ exports.handler = async function(event) {
             message: "Unknown action."
         });
 
-    } catch (error) {
+    
+} catch (error) {
 
-        console.error("Admin API Error:", error.message);
+    console.error("Admin API Error:", error);
 
-        return response(500, {
-            success: false,
-            message: "Server error. Please check configuration and try again."
-        });
+    return response(500, {
+        success: false,
+        message: "Admin API Error: " +
+            String(error.message || "Unknown error").slice(0, 180)
+    });
 
-    }
+}
+
 };
