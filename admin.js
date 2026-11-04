@@ -195,28 +195,34 @@ function openLogin() {
 }
 
 
+
 async function loadDashboard() {
-
     try {
-
         openDashboard();
 
         await loadArticles();
 
         showSection("overview");
 
-    } catch(error) {
+    } catch (error) {
+        console.error("Dashboard loading error:", error);
 
-        logout();
+        const errorText = error.message || "Unknown error";
+
+        if (
+            errorText.includes("Unauthorized") ||
+            errorText.includes("401")
+        ) {
+            logout();
+        }
 
         loginMessage.textContent =
-            "Session expired or access denied. Please login again.";
+            "Dashboard Error: " + errorText;
 
         loginMessage.style.color = "#ff7777";
-
     }
-
 }
+
 
 
 // =========================================
