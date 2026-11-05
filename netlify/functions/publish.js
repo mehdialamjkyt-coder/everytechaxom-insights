@@ -103,7 +103,7 @@ function checkConfiguration() {
 
 async function githubRequest(method, body) {
     const url =
-        `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(GITHUB_REPO)}/contents/${FILE_PATH}`;
+    `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(GITHUB_REPO)}/contents/${FILE_PATH}?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
 
     const result = await fetch(url, {
         method,
